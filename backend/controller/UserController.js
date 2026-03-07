@@ -15,8 +15,10 @@ const handleCreateUser = async (req,res) =>{
     const existingUser = await user.findOne({ email: data.email });
 
     if (existingUser) {
+        
+        
       return res.status(400).json({
-        message: "User already exists",
+        Message: "User already exists",
         success: false
       });
     }
@@ -85,7 +87,8 @@ const handleLogin = async (req,res) => {
 
        return res.status(200).json({
         Message : "Login Successfully",
-        success : true
+        success : true,
+        role : u.role
        })
 
     }catch(err){

@@ -27,7 +27,11 @@ const userSchema = new mongoose.Schema({
     },
     college: {
         type: String
-    }
+    },status:{
+  type:String,
+  enum:["active","blocked"],
+  default:"active"
+ }
     
 },{timestamps : true});
 
