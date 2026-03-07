@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { BiLogIn } from "react-icons/bi";
 import { FaUser, FaEnvelope, FaLock, FaUniversity } from "react-icons/fa";
 
 function Register() {
@@ -24,13 +25,26 @@ function Register() {
   
      const handleRegistration = async () => {
   try {
-
+          console.log(1);
     const res = await axios.post(
+      
+      
       "http://localhost:5000/user/createUser",
       formData
     );
 
     alert(res.data.Message); // from backend
+
+    // clear input fields
+    setFormData({
+      name: "",
+      email: "",
+      password: "",
+      role: "student",
+      branch: "",
+      year: "",
+      college: ""
+    });
 
   } catch (err) {
 
@@ -56,6 +70,7 @@ function Register() {
           <input
             type="text"
             name="name"
+            value = {formData.name}
             placeholder="Full Name"
             className="w-full outline-none px-2 py-2"
             onChange={handleChange}
@@ -68,6 +83,7 @@ function Register() {
           <input
             type="email"
             name="email"
+             value = {formData.email}
             placeholder="Email"
             className="w-full outline-none px-2 py-2"
             onChange={handleChange}
@@ -80,6 +96,7 @@ function Register() {
           <input
             type="password"
             name="password"
+           value = {formData.password}
             placeholder="Password"
             className="w-full outline-none px-2 py-2"
             onChange={handleChange}
@@ -89,6 +106,7 @@ function Register() {
         {/* Role */}
         <select
           name="role"
+          value = {formData.role}
           className="w-full border p-2 mb-4 rounded-lg focus:ring-2 focus:ring-purple-500"
           onChange={handleChange}
         >
@@ -101,6 +119,7 @@ function Register() {
         <input
           type="text"
           name="branch"
+          value = {formData.branch}
           placeholder="Branch (CSE, IT, Mechanical)"
           className="w-full border p-2 mb-4 rounded-lg focus:ring-2 focus:ring-purple-500"
           onChange={handleChange}
@@ -109,6 +128,7 @@ function Register() {
         {/* Year */}
         <select
           name="year"
+          value = {formData.year}
           className="w-full border p-2 mb-4 rounded-lg focus:ring-2 focus:ring-purple-500"
           onChange={handleChange}
         >
@@ -125,6 +145,7 @@ function Register() {
           <input
             type="text"
             name="college"
+            value = {formData.college}
             placeholder="College Name"
             className="w-full outline-none px-2 py-2"
             onChange={handleChange}
